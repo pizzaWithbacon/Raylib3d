@@ -5,13 +5,23 @@
             "label": "Build Raylib",
             "type": "shell",
             "command": "make",
-            "group": "build",
-            "problemMatcher": []
+            "args": [
+                "all"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
         },
         {
             "label": "Run Raylib",
             "type": "shell",
             "command": "make run",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
             "problemMatcher": [],
             "group": {
                 "kind": "build",

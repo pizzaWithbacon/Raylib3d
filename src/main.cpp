@@ -40,11 +40,17 @@ int main()
 
     while (!WindowShouldClose())
     {
-        // 1. --- SECCIÓN DE ENTRADA (Capturar lo que hace el usuario) ---
+        // =========================================================================
+        // 1. SECCIÓN DE ENTRADA (Capturar lo que hace el usuario)
+        // =========================================================================
 
-        // 2. --- SECCIÓN DE ACTUALIZACIÓN (Cálculos, físicas y lógica)
+        // =========================================================================
+        // 2. SECCIÓN DE ACTUALIZACIÓN (Cálculos, físicas y lógica)
+        // =========================================================================
 
-        // 3. --- SECCIÓN DE RENDERIZADO (Dibujar todo en pantalla)---
+        // =========================================================================
+        // 3. SECCIÓN DE RENDERIZADO (Dibujar todo en pantalla)
+        // =========================================================================
         BeginDrawing();
 
         ClearBackground(RAYWHITE);
