@@ -97,7 +97,13 @@ Implementación de:
 velocityY -= gravity * dt;
 player.y += velocityY * dt;
 ```
-
+### Tipos de datos
+- [Tipos de datos en C++](https://learn.microsoft.com/en-us/cpp/cpp/cpp-type-system-modern-cpp?view=msvc-180)
+- [Tipo Booleano (vedadero|Falso)](https://learn.microsoft.com/es-es/dotnet/csharp/language-reference/operators/?authuser=0)
+### Operadores
+- [Operadores Aritmeticos](https://learn.microsoft.com/es-es/dotnet/csharp/language-reference/operators/arithmetic-operators)
+- [Operadores de comparación](https://learn.microsoft.com/es-es/dotnet/csharp/language-reference/operators/comparison-operators)
+- [Operadores booleanos](https://learn.microsoft.com/es-es/dotnet/csharp/language-reference/operators/boolean-logical-operators)
 ---
 
 # Sesión 3 — Eventos e interacciones
