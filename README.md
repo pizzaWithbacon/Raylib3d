@@ -1,6 +1,6 @@
 # Programación del curso (12h) — Desarrollo de videojuego 3D con Raylib
 
-Es necesario realizar los pasos previso indicados en [como instalar el entordo de desarrollo](documentos\como_instalar_el_entordo_de_desarrollo.md)
+Es necesario realizar los pasos previso indicados en [como instalar el entordo de desarrollo](/documentos/como_instalar_el_entordo_de_desarrollo.md)
 
 ## Introducción
 
