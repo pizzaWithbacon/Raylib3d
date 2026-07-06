@@ -37,13 +37,16 @@ int main()
 
     // Establece el objetivo de fotogramas por segundo de la ventana
     SetTargetFPS(MAX_FPS);
-
+Vector3 posicionCubo = CUBE_POSITION;
     while (!WindowShouldClose())
     {
         // =========================================================================
         // 1. SECCIÓN DE ENTRADA (Capturar lo que hace el usuario)
         // =========================================================================
-
+if (condition)
+    {
+        // code
+    }
         // =========================================================================
         // 2. SECCIÓN DE ACTUALIZACIÓN (Cálculos, físicas y lógica)
         // =========================================================================
@@ -58,7 +61,7 @@ int main()
         // Inicio del espacio de dibujo 3D
         BeginMode3D(camera);
         // Dibuja el cubo utilizando las constantes definidas
-        DrawCube(CUBE_POSITION, CUBE_SIZE, CUBE_SIZE, CUBE_SIZE, RED);
+        DrawCube(posicionCubo, CUBE_SIZE, CUBE_SIZE, CUBE_SIZE, RED);
 
         // Dibuja la cuadrícula de guía en el suelo
         DrawGrid(GRID_SLICES, GRID_SPACING);
