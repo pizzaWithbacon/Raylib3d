@@ -1,4 +1,5 @@
 #include "raylib.h"
+#include "raymath.h"
 
 // Constantes de Configuración de la Ventana
 #define SCREEN_WIDTH 800  // Ancho de la ventana en píxeles
@@ -43,9 +44,25 @@ Vector3 posicionCubo = CUBE_POSITION;
         // =========================================================================
         // 1. SECCIÓN DE ENTRADA (Capturar lo que hace el usuario)
         // =========================================================================
-if (condition)
+if (IsKeyPressed(KEY_W))
     {
-        // code
+        posicionCubo = Vector3Add(posicionCubo, (Vector3){0, 0, -1});
+    }
+    if (IsKeyPressed(KEY_A))
+    {
+        posicionCubo = Vector3Add(posicionCubo, (Vector3){-1, 0, 0});
+    }
+if (IsKeyPressed(KEY_S))
+    {
+        posicionCubo = Vector3Add(posicionCubo, (Vector3){0, 0, 1});
+    }
+if (IsKeyPressed(KEY_D))
+    {
+        posicionCubo = Vector3Add(posicionCubo, (Vector3){1, 0, 0});
+    }
+    if (IsKeyPressed(KEY_SPACE))
+    {
+        posicionCubo = Vector3Add(posicionCubo, (Vector3){0, 1, 0});
     }
         // =========================================================================
         // 2. SECCIÓN DE ACTUALIZACIÓN (Cálculos, físicas y lógica)
