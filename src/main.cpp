@@ -1,3 +1,4 @@
+#include "Jugador.hpp"
 #include "raylib.h"
 #include "raymath.h"
 
@@ -13,10 +14,10 @@
 #define INITIAL_CAMERA_FOVY 45.0f                           // Amplitud del lente (el ángulo de apertura vertical)
 
 // Constantes del Entorno y Objetos
-#define GRID_SLICES 20                            // Número de divisiones en la cuadrícula
-#define GRID_SPACING 1.0f                         // Espaciado entre las divisiones de la cuadrícula
+#define GRID_SLICES 20                                     // Número de divisiones en la cuadrícula
+#define GRID_SPACING 1.0f                                  // Espaciado entre las divisiones de la cuadrícula
 #define CUBE_POSITION (Vector3){0.0f, CUBE_SIZE / 2, 0.0f} // Posición del cubo central en el mundo
-#define CUBE_SIZE 1.0f                            // Tamaño del cubo (Ancho, Alto, Largo)
+#define CUBE_SIZE 1.0f                                     // Tamaño del cubo (Ancho, Alto, Largo)
 
 // Constantes de la Interfaz (UI)
 #define TEXT_POS_X 10     // Posición X del texto en la pantalla
@@ -35,56 +36,57 @@ int main()
     camera.up = INITIAL_CAMERA_UP;
     camera.fovy = INITIAL_CAMERA_FOVY;
     camera.projection = CAMERA_PERSPECTIVE; // Perspectiva real: objetos lejanos se ven más pequeños
-
+    Jugador jugador1;
     // Establece el objetivo de fotogramas por segundo de la ventana
     SetTargetFPS(MAX_FPS);
-Vector3 posicionCubo = CUBE_POSITION;
-float gravedad = -0.006f;
-float suavidadCamara = 4.0f;
-float velocidadPersonaje = 4.0f;
+    Vector3 posicionCubo = CUBE_POSITION;
+    float gravedad = -0.006f;
+    float suavidadCamara = 4.0f;
+    float velocidadPersonaje = 4.0f;
     while (!WindowShouldClose())
     {
         // =========================================================================
         // 1. SECCIÓN DE ENTRADA (Capturar lo que hace el usuario)
         // =========================================================================
-if (IsKeyDown(KEY_W))
-    {
-         posicionCubo.z = posicionCubo.z + -1.0f * velocidadPersonaje * GetFrameTime();
-    }
-    
-    if (IsKeyDown(KEY_A))
-    {
-        posicionCubo.x = posicionCubo.x + -1.0f * velocidadPersonaje * GetFrameTime();
-    }
-if (IsKeyDown(KEY_S))
-    {
-        posicionCubo.z = posicionCubo.z + 1.0f * velocidadPersonaje * GetFrameTime();
-    }
-    
-if (IsKeyDown(KEY_D))
-    {
-        posicionCubo.x = posicionCubo.x + 1.0f * velocidadPersonaje * GetFrameTime();
-    }
-    
-    if (IsKeyPressed(KEY_SPACE))
-    {
-        posicionCubo = Vector3Add(posicionCubo, (Vector3){0.0f, 1.0f, 0.0f});
-    }
+        if (IsKeyDown(KEY_W))
+        {
+            posicionCubo.z = posicionCubo.z + -1.0f * velocidadPersonaje * GetFrameTime();
+        }
+
+        if (IsKeyDown(KEY_A))
+        {
+            posicionCubo.x = posicionCubo.x + -1.0f * velocidadPersonaje * GetFrameTime();
+        }
+        if (IsKeyDown(KEY_S))
+        {
+            posicionCubo.z = posicionCubo.z + 1.0f * velocidadPersonaje * GetFrameTime();
+        }
+
+        if (IsKeyDown(KEY_D))
+        {
+            posicionCubo.x = posicionCubo.x + 1.0f * velocidadPersonaje * GetFrameTime();
+        }
+
+        if (IsKeyPressed(KEY_SPACE))
+        {
+            posicionCubo = Vector3Add(posicionCubo, (Vector3){0.0f, 1.0f, 0.0f});
+        }
         // =========================================================================
         // 2. SECCIÓN DE ACTUALIZACIÓN (Cálculos, físicas y lógica)
         // =========================================================================
-           if (posicionCubo.y > CUBE_SIZE / 2){
-                posicionCubo.y = posicionCubo.y + gravedad;
-           }
-           else
-           { 
+        if (posicionCubo.y > CUBE_SIZE / 2)
+        {
+            posicionCubo.y = posicionCubo.y + gravedad;
+        }
+        else
+        {
             posicionCubo.y = CUBE_SIZE / 2;
-           }
-           camera.target = Vector3Lerp(camera.target, posicionCubo, suavidadCamara * GetFrameTime());
-           camera.position = Vector3Add(posicionCubo, INITIAL_CAMERA_POSITION);
-           camera.position = Vector3Lerp(camera.position,
-        Vector3Add(posicionCubo, INITIAL_CAMERA_POSITION),
-        suavidadCamara);
+        }
+        camera.target = Vector3Lerp(camera.target, posicionCubo, suavidadCamara * GetFrameTime());
+        camera.position = Vector3Add(posicionCubo, INITIAL_CAMERA_POSITION);
+        camera.position = Vector3Lerp(camera.position,
+                                      Vector3Add(posicionCubo, INITIAL_CAMERA_POSITION),
+                                      suavidadCamara);
         // =========================================================================
         // 3. SECCIÓN DE RENDERIZADO (Dibujar todo en pantalla)
         // =========================================================================
