@@ -36,41 +36,50 @@ int main()
     camera.up = INITIAL_CAMERA_UP;
     camera.fovy = INITIAL_CAMERA_FOVY;
     camera.projection = CAMERA_PERSPECTIVE; // Perspectiva real: objetos lejanos se ven más pequeños
-    Jugador jugador1;
+    Jugador jugador1 = Jugador(4.0f, RED, 8.0f, CUBE_POSITION);
     // Establece el objetivo de fotogramas por segundo de la ventana
     SetTargetFPS(MAX_FPS);
     Vector3 posicionCubo = CUBE_POSITION;
     float gravedad = -0.006f;
     float suavidadCamara = 4.0f;
-    float velocidadPersonaje = 4.0f;
+    // float jugador1.getVelocidad() = 4.0f;
     while (!WindowShouldClose())
     {
         // =========================================================================
         // 1. SECCIÓN DE ENTRADA (Capturar lo que hace el usuario)
         // =========================================================================
+        Vector3 nuevaPosicion = jugador1.getPosicion();
+
         if (IsKeyDown(KEY_W))
+
         {
-            posicionCubo.z = posicionCubo.z + -1.0f * velocidadPersonaje * GetFrameTime();
+            nuevaPosicion.z = nuevaPosicion.z + -1.0f * jugador1.getVelocidad() * GetFrameTime();
         }
 
         if (IsKeyDown(KEY_A))
         {
-            posicionCubo.x = posicionCubo.x + -1.0f * velocidadPersonaje * GetFrameTime();
+
+            nuevaPosicion.x = nuevaPosicion.x + -1.0f * jugador1.getVelocidad() * GetFrameTime();
         }
         if (IsKeyDown(KEY_S))
         {
-            posicionCubo.z = posicionCubo.z + 1.0f * velocidadPersonaje * GetFrameTime();
+
+            nuevaPosicion.z = nuevaPosicion.z + 1.0f * jugador1.getVelocidad() * GetFrameTime();
         }
 
         if (IsKeyDown(KEY_D))
         {
-            posicionCubo.x = posicionCubo.x + 1.0f * velocidadPersonaje * GetFrameTime();
+            nuevaPosicion.x = nuevaPosicion.x + 1.0f * jugador1.getVelocidad() * GetFrameTime();
         }
 
         if (IsKeyPressed(KEY_SPACE))
         {
+
             posicionCubo = Vector3Add(posicionCubo, (Vector3){0.0f, 1.0f, 0.0f});
         }
+
+        jugador1.setPosicion(nuevaPosicion);
+
         // =========================================================================
         // 2. SECCIÓN DE ACTUALIZACIÓN (Cálculos, físicas y lógica)
         // =========================================================================
@@ -82,11 +91,10 @@ int main()
         {
             posicionCubo.y = CUBE_SIZE / 2;
         }
-        camera.target = Vector3Lerp(camera.target, posicionCubo, suavidadCamara * GetFrameTime());
-        camera.position = Vector3Add(posicionCubo, INITIAL_CAMERA_POSITION);
+        camera.target = Vector3Lerp(camera.target, jugador1.getPosicion(), suavidadCamara * GetFrameTime());
         camera.position = Vector3Lerp(camera.position,
-                                      Vector3Add(posicionCubo, INITIAL_CAMERA_POSITION),
-                                      suavidadCamara);
+                                      Vector3Add(jugador1.getPosicion(), INITIAL_CAMERA_POSITION),
+                                      suavidadCamara * GetFrameTime());
         // =========================================================================
         // 3. SECCIÓN DE RENDERIZADO (Dibujar todo en pantalla)
         // =========================================================================
@@ -97,7 +105,7 @@ int main()
         // Inicio del espacio de dibujo 3D
         BeginMode3D(camera);
         // Dibuja el cubo utilizando las constantes definidas
-        DrawCube(posicionCubo, CUBE_SIZE, CUBE_SIZE, CUBE_SIZE, RED);
+        DrawCube(jugador1.getPosicion(), CUBE_SIZE, CUBE_SIZE, CUBE_SIZE, jugador1.getColor());
 
         // Dibuja la cuadrícula de guía en el suelo
         DrawGrid(GRID_SLICES, GRID_SPACING);
