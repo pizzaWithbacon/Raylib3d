@@ -36,7 +36,7 @@ int main()
     camera.up = INITIAL_CAMERA_UP;
     camera.fovy = INITIAL_CAMERA_FOVY;
     camera.projection = CAMERA_PERSPECTIVE; // Perspectiva real: objetos lejanos se ven más pequeños
-    Jugador jugador1 = Jugador(4.0f, RED, 8.0f, CUBE_POSITION);
+    Jugador jugador1 = Jugador(4.0f, RED, 8.0f, CUBE_POSITION, CUBE_SIZE);
     // Establece el objetivo de fotogramas por segundo de la ventana
     SetTargetFPS(MAX_FPS);
     Vector3 posicionCubo = CUBE_POSITION;
